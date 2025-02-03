@@ -1,4 +1,12 @@
 .logo {
-    height: 50px; /* Adjust height as needed */
-    cursor: pointer;
+    top: 20px;
+    left: 32px;
+    width: 67px;
+    height: 34px;
+    display: flex;
+    align-items: center;
+    font-size: 20px;
+    font-weight: bold;
+    color: white;
+    text-decoration: none;
 }

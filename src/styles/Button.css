@@ -1,24 +1,25 @@
-:root {
-    --button-bg-color: #000000; /* Black */
-    --button-text-color: #00ff00; /* Green (from Figma file) */
-  }
+
   
   .Button {
+    width: 147px;
+    height: 47px;
     display: inline-block;
     padding: 0.5rem 1rem;
     font-family: "Poppins", sans-serif;
     font-size: 1rem;
     font-weight: 500;
-    color: var(--button-text-color);
-    background-color: var(--button-bg-color);
+    color: #34c94c;
+    background-color: #121212;;
     border: none;
-    border-radius: 8px; /* Add border-radius */
+    border-radius: 8px; 
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.2s ease;
   }
   
   .Button:hover {
-    background-color: #222222; /* Slightly lighter black for hover */
-    transform: scale(1.05); /* Slight zoom-in effect */
+    background-color: #222222; 
+    transform: scale(1.05); 
   }
+
+
   

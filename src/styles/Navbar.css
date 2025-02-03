@@ -1,8 +1,16 @@
 .navbar {
+    height: 74px;
+    
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 10px 20px;
-    background-color: #fff;
+    background-color: #34C94B;
+    ;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
 }
+.navbar-search{
+ width: 568px;
+
+}
+
