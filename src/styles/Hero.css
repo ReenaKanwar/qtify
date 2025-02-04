@@ -3,12 +3,18 @@
     height: 212px;
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    color: #ffffff;
     padding: 50px;
     background-color: #121212;
     margin-left: 220px;
-    
+    text-align: justify;
+    align-items: center;
+    text-size-adjust: 32px;
+    line-height: 48px;
+    font-weight: 600;
+    font-style: Poppins;
 }
+
 
 
 
