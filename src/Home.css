@@ -4,9 +4,14 @@
     padding: 2rem;
     text-align: center;
     background-color: #121212;
-    color: #333;
+    color: #ffff;
+  
   }
   
+  .heading{
+    margin-right: 90%;
+    
+  }
   .home-header {
     margin-bottom: 2rem;
   }
@@ -14,7 +19,7 @@
   .home-header h1 {
     font-size: 2.5rem;
     margin-bottom: 0.5rem;
-    color: #1db954; /* Green color */
+    color: #1db954; 
   }
   
   .home-header p {

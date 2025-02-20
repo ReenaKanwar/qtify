@@ -3,7 +3,9 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import SearchResults from "./components/Searchresult";
 import Home from "./Home";
-import AlbumList from "./components/AlbumList";  
+import AlbumList from "./components/AlbumList";
+
+
 
 const App = () => {
   return (
