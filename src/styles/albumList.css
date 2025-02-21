@@ -1,45 +1,51 @@
-.album-grid {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  justify-content: center;
+.album-section {
   padding: 20px;
   background-color: #121212;
+  color: white;
+}
+
+.album-box {
+  margin-bottom: 20px;
+}
+
+.album-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.toggle-btn {
+  background-color: #34c94b;
+  color: white;
+  font-weight: bold;
+  text-transform: none;
+}
+
+
+.album-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 15px;
+}
+
+
+.album-grid.expanded {
+  max-height: none;
+  overflow: visible;
+}
+
+
+.album-grid.collapsed {
+  max-height: 180px; 
+  overflow: hidden;
 }
 
 .album-card {
-  width: 250px;
-  border-radius: 10px;
-  overflow: hidden;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-  transition: transform 0.3s ease-in-out;
-}
-
-.album-card:hover {
-  transform: scale(1.05);
-}
-
-.album-image {
-  width: 100%;
-  height: 150px;
-  object-fit: cover;
-}
-
-.card-content {
-  padding: 10px;
-  text-align: left;
-  color: #000;
-}
-
-.follow {
-  background-color: black;
-  
-  
-
+  background-color: #1e1e1e;
 }
 
 .album-title {
-  font-size: 16px;
-  font-weight: bold;
-  color: white;
+  text-align: center;
+  margin-top: 5px;
 }
