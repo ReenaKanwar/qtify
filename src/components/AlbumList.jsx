@@ -6,6 +6,8 @@ import "../styles/Albumlist.css";
 const API_TOP_ALBUMS = "https://qtify-backend-labs.crio.do/albums/top";
 const API_NEW_ALBUMS = "https://qtify-backend-labs.crio.do/albums/new";
 
+// Add comment to push
+
 const AlbumList = () => {
   const [topAlbums, setTopAlbums] = useState([]);
   const [newAlbums, setNewAlbums] = useState([]);
