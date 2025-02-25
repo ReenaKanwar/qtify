@@ -19,7 +19,7 @@ const Navbar = () => {
         <Logo />
       </div>
       <div className="navbar-search">
-        <Search placeholder="search" onSearch={handleSearch} />
+        <Search placeholder="Search" onSearch={handleSearch} />
       </div>
       <div className="navbar-feedback">
         <Button text="Give Feedback" onClick={handleFeedbackClick} />

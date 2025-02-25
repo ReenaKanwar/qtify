@@ -5,88 +5,80 @@ import "../styles/Albumlist.css";
 
 const API_TOP_ALBUMS = "https://qtify-backend-labs.crio.do/albums/top";
 const API_NEW_ALBUMS = "https://qtify-backend-labs.crio.do/albums/new";
-
-// Add comment to push
-
+const API_SONGS = "https://qtify-backend-labs.crio.do/songs"; 
 const AlbumList = () => {
   const [topAlbums, setTopAlbums] = useState([]);
   const [newAlbums, setNewAlbums] = useState([]);
   const [songs, setSongs] = useState([]);
+  
   const [showTopAlbums, setShowTopAlbums] = useState(false);
   const [showNewAlbums, setShowNewAlbums] = useState(false);
   const [showSongs, setShowSongs] = useState(false);
 
   useEffect(() => {
-    axios.get(API_TOP_ALBUMS)
-      .then(response => setTopAlbums(response.data))
-      .catch(error => console.error("Error fetching top albums:", error));
-
-    axios.get(API_NEW_ALBUMS)
-      .then(response => setNewAlbums(response.data))
-      .catch(error => console.error("Error fetching new albums:", error));
-
-    axios.get(API_TOP_ALBUMS) // Just for demo, using top albums as songs
-      .then(response => setSongs(response.data))
-      .catch(error => console.error("Error fetching songs:", error));
+    
+    Promise.all([
+      axios.get(API_TOP_ALBUMS),
+      axios.get(API_NEW_ALBUMS),
+      axios.get(API_SONGS)
+    ])
+    .then(([topAlbumsRes, newAlbumsRes, songsRes]) => {
+      setTopAlbums(topAlbumsRes.data);
+      setNewAlbums(newAlbumsRes.data);
+      setSongs(songsRes.data);
+    })
+    .catch(error => console.error("Error fetching data:", error));
   }, []);
 
   return (
     <div className="album-section">
-      
       {/* Top Albums */}
-      <div className="album-box">
-        <div className="album-header">
-          <h2>Top Albums</h2>
-          <Button 
-            onClick={() => setShowTopAlbums(!showTopAlbums)}
-            className="toggle-btn"
-          >
-            {showTopAlbums ? "Collapse" : "Show All"}
-          </Button>
-        </div>
-        <div className={`album-grid ${showTopAlbums ? "expanded" : "collapsed"}`}>
-          {topAlbums.map(album => (
-            <AlbumCard key={album.id} album={album} />
-          ))}
-        </div>
-      </div>
+      <AlbumBox
+        title="Top Albums"
+        albums={topAlbums}
+        showAll={showTopAlbums}
+        setShowAll={setShowTopAlbums}
+      />
 
       {/* New Albums */}
-      <div className="album-box">
-        <div className="album-header">
-          <h2>New Albums</h2>
-          <Button 
-            onClick={() => setShowNewAlbums(!showNewAlbums)}
-            className="toggle-btn"
-          >
-            {showNewAlbums ? "Collapse" : "Show All"}
-          </Button>
-        </div>
-        <div className={`album-grid ${showNewAlbums ? "expanded" : "collapsed"}`}>
-          {newAlbums.map(album => (
-            <AlbumCard key={album.id} album={album} />
-          ))}
-        </div>
-      </div>
+      <AlbumBox
+        title="New Albums"
+        albums={newAlbums}
+        showAll={showNewAlbums}
+        setShowAll={setShowNewAlbums}
+      />
 
       {/* Songs */}
-      <div className="album-box">
-        <div className="album-header">
-          <h2>Songs</h2>
-          <Button 
-            onClick={() => setShowSongs(!showSongs)}
-            className="toggle-btn"
-          >
-            {showSongs ? "Collapse" : "Show All"}
-          </Button>
-        </div>
-        <div className={`album-grid ${showSongs ? "expanded" : "collapsed"}`}>
-          {songs.map(album => (
-            <AlbumCard key={album.id} album={album} />
-          ))}
-        </div>
-      </div>
+      <AlbumBox
+        title="Songs"
+        albums={songs}
+        showAll={showSongs}
+        setShowAll={setShowSongs}
+      />
+    </div>
+  );
+};
 
+// AlbumBox Component
+const AlbumBox = ({ title, albums, showAll, setShowAll }) => {
+  const visibleAlbums = showAll ? albums : albums.slice(0, 7); 
+
+  return (
+    <div className="album-box">
+      <div className="album-header">
+        <h2>{title}</h2>
+        <Button 
+          onClick={() => setShowAll(!showAll)}
+          className="toggle-btn"
+        >
+          {showAll ? "Collapse" : "Show All"}
+        </Button>
+      </div>
+      <div className={`album-grid ${showAll ? "expanded" : "collapsed"}`}>
+        {visibleAlbums.map(album => (
+          <AlbumCard key={album.id} album={album} />
+        ))}
+      </div>
     </div>
   );
 };
@@ -105,4 +97,3 @@ const AlbumCard = ({ album }) => (
 );
 
 export default AlbumList;
-// dummy testvhbjmvk,
