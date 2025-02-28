@@ -6,7 +6,7 @@ import "../styles/slider.css";
 
 const Slider = ({ albums }) => {
   const sliderRef = useRef(null);
-console.log (albums)
+  console.log("Slider received albums:", albums.length);
   const scroll = (direction) => {
     if (sliderRef.current) {
       const scrollAmount = 200; 

@@ -25,12 +25,17 @@ const AlbumList = () => {
       axios.get(API_SONGS)
     ])
     .then(([topAlbumsRes, newAlbumsRes, songsRes]) => {
+      console.log("Top Albums API Response:", topAlbumsRes.data);
+      console.log("New Albums API Response:", newAlbumsRes.data);
+      console.log("Songs API Response:", songsRes.data);
+  
       setTopAlbums(topAlbumsRes.data);
       setNewAlbums(newAlbumsRes.data);
       setSongs(songsRes.data);
     })
     .catch(error => console.error("Error fetching data:", error));
   }, []);
+  
 
   return (
     <div className="album-section">
@@ -58,30 +63,21 @@ const AlbumList = () => {
 
 // AlbumBox Component
 const AlbumBox = ({ title, albums, showAll, setShowAll }) => {
-  const visibleAlbums = showAll ? albums : albums.slice(0, 7);
+  console.log(`${title} Album Count:`, albums.length);
 
   return (
     <div className="album-box">
       <div className="album-header">
-        <h2>{title}</h2>
-        <Button 
-          onClick={() => setShowAll(!showAll)}
-          className="toggle-btn"
-        >
+        <Typography variant="h5">{title}</Typography>
+        <Button onClick={() => setShowAll(!showAll)} className="toggle-btn">
           {showAll ? "Collapse" : "Show All"}
         </Button>
       </div>
-      <Slider albums={visibleAlbums}/>
-      {/* <div>
-        <div className={`album-grid ${showAll ? "expanded" : "collapsed"}`}>
-          {visibleAlbums.map(album => (
-            <AlbumCard key={album.id} album={album} />
-          ))}
-        </div>
-      </div> */}
+      <Slider albums={albums} />
     </div>
   );
 };
+
 
 // AlbumCard Component
 const AlbumCard = ({ album }) => (
