@@ -1,14 +1,15 @@
 import React, { useRef } from "react";
-import { IconButton } from "@mui/material";
-import { ArrowBackIos, ArrowForwardIos } from "@mui/icons-material";
-import "../styles/Slider.css";
+import { Card, CardContent, CardMedia, Chip, IconButton, Typography } from "@mui/material";
+import KeyboardArrowRightRoundedIcon from '@mui/icons-material/KeyboardArrowRightRounded';
+import KeyboardArrowLeftRoundedIcon from '@mui/icons-material/KeyboardArrowLeftRounded';
+import "../styles/slider.css";
 
 const Slider = ({ albums }) => {
   const sliderRef = useRef(null);
-
+console.log (albums)
   const scroll = (direction) => {
     if (sliderRef.current) {
-      const scrollAmount = 200; // Adjust scrolling distance
+      const scrollAmount = 200; 
       sliderRef.current.scrollBy({
         left: direction === "next" ? scrollAmount : -scrollAmount,
         behavior: "smooth",
@@ -18,21 +19,39 @@ const Slider = ({ albums }) => {
 
   return (
     <div className="slider-container">
-      <IconButton className="slider-btn left" onClick={() => scroll("prev")}>
-        <ArrowBackIos />
+      <IconButton onClick={() => scroll("prev")} sx={{
+    backgroundColor: "#00ff00",
+    left: "10px",
+    "&:hover": {
+      backgroundColor: "green", 
+    }
+  }} >
+        <KeyboardArrowLeftRoundedIcon sx={{color:"white"}} />
+        
       </IconButton>
 
       <div className="slider" ref={sliderRef}>
         {albums.map((album) => (
-          <div key={album.id} className="slide">
-            <img src={album.image} alt={album.title} className="slide-image" />
-            <p className="slide-title">{album.title}</p>
-          </div>
+         <div>
+         <Card className="album-card">
+           <CardMedia component="img" image={album.image} alt={album.title} sx={{width:"100%" , height:"75%"}} />
+           <CardContent sx={{textAlign:"left"}}>
+             <Chip label={`${album.follows} Follows`} sx={{backgroundColor:"black", color:"white", }}/>
+           </CardContent>
+         </Card>
+         <Typography variant="h6"  sx={{fontSize:"16px"}}>{album.title}</Typography>
+       </div>
         ))}
       </div>
 
-      <IconButton className="slider-btn right" onClick={() => scroll("next")}>
-        <ArrowForwardIos />
+      <IconButton onClick={() => scroll("next")} sx={{
+    backgroundColor: "#00ff00",
+    right: "10px",
+    "&:hover": {
+      backgroundColor: "green", 
+    }
+  }} >
+      <KeyboardArrowRightRoundedIcon sx={{color:"white"}} />
       </IconButton>
     </div>
   );

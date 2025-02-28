@@ -2,7 +2,7 @@ import React from "react";
 import "../styles/search.css"; 
 import Icon from "../assets/search icon.png";
 
-const Search = ({ placeholder = "Search...", onSearch }) => {
+const Search = ({ placeholder = "Search a album of your choice", onSearch }) => {
   const handleInputChange = (event) => {
     if (onSearch) {
       onSearch(event.target.value);
@@ -18,7 +18,7 @@ const Search = ({ placeholder = "Search...", onSearch }) => {
         onChange={handleInputChange}
       />
       <button className="search-button">
-        <img src={Icon} alt="Search" className="search-icon" />
+        <img src={Icon} alt="Search " className="search-icon" />
       </button>
     </div>
   

@@ -4,11 +4,13 @@
     position: relative;
     overflow: hidden;
     width: 100%;
+    
   }
   
   .slider {
+    width: 100%;
     display: flex;
-    gap: 15px;
+    gap: 20px;
     overflow-x: auto;
     scroll-behavior: smooth;
     scrollbar-width: none;
@@ -49,5 +51,15 @@
   
   .slider-btn.right {
     right: 10px;
+  }
+  
+  .album-card {
+    width: 140px;
+    height: 220px;
+    border-radius: 25px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out;
+  
   }
   

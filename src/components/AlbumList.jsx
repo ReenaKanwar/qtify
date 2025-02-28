@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { Card, CardContent, CardMedia, Typography, Chip, Button } from "@mui/material";
+import Slider from "./slider"; 
+
 import axios from "axios";
 import "../styles/Albumlist.css";
 
 const API_TOP_ALBUMS = "https://qtify-backend-labs.crio.do/albums/top";
 const API_NEW_ALBUMS = "https://qtify-backend-labs.crio.do/albums/new";
-const API_SONGS = "https://qtify-backend-labs.crio.do/songs"; 
+const API_SONGS = "https://qtify-backend-labs.crio.do/songs";
+
 const AlbumList = () => {
   const [topAlbums, setTopAlbums] = useState([]);
   const [newAlbums, setNewAlbums] = useState([]);
@@ -16,7 +19,6 @@ const AlbumList = () => {
   const [showSongs, setShowSongs] = useState(false);
 
   useEffect(() => {
-    
     Promise.all([
       axios.get(API_TOP_ALBUMS),
       axios.get(API_NEW_ALBUMS),
@@ -32,23 +34,18 @@ const AlbumList = () => {
 
   return (
     <div className="album-section">
-      {/* Top Albums */}
       <AlbumBox
         title="Top Albums"
         albums={topAlbums}
         showAll={showTopAlbums}
         setShowAll={setShowTopAlbums}
       />
-
-      {/* New Albums */}
       <AlbumBox
         title="New Albums"
         albums={newAlbums}
         showAll={showNewAlbums}
         setShowAll={setShowNewAlbums}
       />
-
-      {/* Songs */}
       <AlbumBox
         title="Songs"
         albums={songs}
@@ -61,7 +58,7 @@ const AlbumList = () => {
 
 // AlbumBox Component
 const AlbumBox = ({ title, albums, showAll, setShowAll }) => {
-  const visibleAlbums = showAll ? albums : albums.slice(0, 7); 
+  const visibleAlbums = showAll ? albums : albums.slice(0, 7);
 
   return (
     <div className="album-box">
@@ -74,11 +71,14 @@ const AlbumBox = ({ title, albums, showAll, setShowAll }) => {
           {showAll ? "Collapse" : "Show All"}
         </Button>
       </div>
-      <div className={`album-grid ${showAll ? "expanded" : "collapsed"}`}>
-        {visibleAlbums.map(album => (
-          <AlbumCard key={album.id} album={album} />
-        ))}
-      </div>
+      <Slider albums={visibleAlbums}/>
+      {/* <div>
+        <div className={`album-grid ${showAll ? "expanded" : "collapsed"}`}>
+          {visibleAlbums.map(album => (
+            <AlbumCard key={album.id} album={album} />
+          ))}
+        </div>
+      </div> */}
     </div>
   );
 };
@@ -89,7 +89,7 @@ const AlbumCard = ({ album }) => (
     <Card className="album-card">
       <CardMedia component="img" image={album.image} alt={album.title} className="album-image" />
       <CardContent className="card-content">
-        <Chip label={`${album.follows} Follows`} className="follow" />
+        <Chip label={`${album.follows} Follows`} className="follow-chip" />
       </CardContent>
     </Card>
     <Typography variant="h6" className="album-title">{album.title}</Typography>
